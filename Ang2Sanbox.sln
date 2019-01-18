@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ang2Sanbox", "Ang2Sanbox\Ang2Sanbox.csproj", "{3FDE1E87-6FB2-4C01-9732-CCB8ECD38470}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FDE1E87-6FB2-4C01-9732-CCB8ECD38470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FDE1E87-6FB2-4C01-9732-CCB8ECD38470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FDE1E87-6FB2-4C01-9732-CCB8ECD38470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FDE1E87-6FB2-4C01-9732-CCB8ECD38470}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33C7A9CF-E387-43D3-84BA-E65BF7F1C4BF}
+	EndGlobalSection
+EndGlobal
