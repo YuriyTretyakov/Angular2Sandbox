@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,4 @@ export class AppComponent {
     name: "Ryu",
     belt: "Red"
   };
-
-  yell(e) {
-    alert("I am yelling");
-    console.log(e);
-  }
 }

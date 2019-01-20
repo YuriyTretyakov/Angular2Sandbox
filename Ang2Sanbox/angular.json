@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "defaultProject": "Ang2Sanbox",
   "newProjectRoot": "projects",
   "projects": {
     "Ang2Sanbox": {
@@ -131,5 +131,5 @@
       }
     }
   },
-  "defaultProject": "Ang2Sanbox"
+  "version": 1
 }
