@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
+
   ],
   declarations: [
-    AppComponent,
+    AppComponent
+   
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

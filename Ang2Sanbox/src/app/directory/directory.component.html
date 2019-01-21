@@ -1,3 +1,17 @@
-<p>
-  directory works!
-</p>
+<h2>Ninja Listing</h2>
+<form id="filter">
+<label>Filter Ninjas</label>
+  <input type="text" [(ngModel)]="userenter" />
+</form>
+
+
+
+<ul id="ninja-listing">
+  <li *ngFor="let ninja of ninjas | filter:userenter">
+    <div class="single-ninja">
+      <span [ngStyle]="{background: ninja.belt}">{{ninja.belt}} belt</span>
+      <h3>{{ninja.name}}</h3>
+      <div (click)="remove($event)" [attr.data-name]="ninja.name">delete</div>
+    </div>
+  </li>
+</ul>
