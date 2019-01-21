@@ -4,14 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 
+
 @NgModule({
   imports: [BrowserModule,
     FormsModule
+   
   ],
   declarations: [
     DirectoryComponent,
-    FilterPipe
-  ],
-  exports: [FilterPipe]
+    FilterPipe,
+  ]
+
 })
 export class DirectoryModule { }
