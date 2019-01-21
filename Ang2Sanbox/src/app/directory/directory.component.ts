@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -10,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   
 })
 export class DirectoryComponent implements OnInit {
-  
+
+   userenter: string;
+
   constructor(private route: ActivatedRoute) {
 
     

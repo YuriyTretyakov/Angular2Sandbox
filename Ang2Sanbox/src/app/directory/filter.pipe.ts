@@ -10,7 +10,7 @@ export class FilterPipe implements PipeTransform {
     if (term == undefined) return ninjas;
 
     return ninjas.filter(function (ninja) {
-      return ninja.nametoLowerCase().includes(term.toLowerCase());
+      return ninja.name.toLowerCase().includes(term.toLowerCase());
     })
   }
 }
