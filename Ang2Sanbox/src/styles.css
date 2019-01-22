@@ -159,6 +159,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     float: right;
   }
 
-  .delete-ninja button Cancel {
-    float: left;
-  }
+.cancel-delete {
+  float: left;
+}
