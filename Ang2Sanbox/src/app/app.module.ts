@@ -6,18 +6,22 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoggingService } from './logging.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialog } from './ConfirmationDialog/confirmationdialog.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent
    
   ],
+  entryComponents: [ConfirmationDialog],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
               LoggingService],
   bootstrap: [AppComponent]

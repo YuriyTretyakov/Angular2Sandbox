@@ -145,3 +145,20 @@ nav {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.delete-ninja{
+    background: #0288d1;
+    color: #eee;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 2px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .delete-ninja button Cancel {
+    float: left;
+  }

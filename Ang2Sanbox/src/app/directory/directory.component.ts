@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, Inject,OnInit} from '@angular/core';
 import { LoggingService } from '../logging.service';
 import { DataService } from '../data.service';
-import { ConfirmationDialog } from '../ConfirmationDialog/confirmationdialog';
-import { MatDialogRef,  MatDialog } from '@angular/material';
+import { ConfirmationDialog } from '../ConfirmationDialog/confirmationdialog.component';
+import { MatDialog} from '@angular/material';
 
 declare var firebase: any;
 
@@ -11,22 +11,19 @@ declare var firebase: any;
   selector: 'app-directory',
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.css']
-  
-  
+
+
 })
 export class DirectoryComponent implements OnInit {
 
-  dialogRef: MatDialogRef<ConfirmationDialog>;
+  ninjaSelected: string;
   userenter: string;
   ninjas = [];
   name: string;
   belt: string;
 
   constructor(private logger: LoggingService,
-    private dataService: DataService, private dialog: MatDialog) {
-
-    
-  }
+    private dataService: DataService, public dialog: MatDialog) { }
 
   logIt() {
     this.logger.log();
@@ -42,7 +39,6 @@ export class DirectoryComponent implements OnInit {
     firebase.database().ref('/').on('child_added', (snapshot) => {
       this.ninjas.push(snapshot.val());
     })
-
   }
 
   fbSubscribeChildRemoved() {
@@ -53,7 +49,7 @@ export class DirectoryComponent implements OnInit {
         return ninja.name !== ninjaToDelete;
       });
     });
-}
+  }
 
   fbPostData(name: string, belt: string) {
     firebase.database().ref('/').push({ name: name, belt: belt });
@@ -61,22 +57,30 @@ export class DirectoryComponent implements OnInit {
     this.belt = "";
   }
 
-  fbDelete(ninjaId:string) {
-    var item = firebase.database().ref('/').child(ninjaId).remove();
+  fbDelete(ninjaName: string) {
+    this.dataService.fetchData().subscribe(data => {
+      var key = Object.keys(data).find(key => data[key].name === ninjaName);
+      var item = firebase.database().ref('/').child(key).remove();
+    });
   }
 
-  openConfirmationDialog(name: string, id: string) {
-    let config = { with: '650px', height: '400px', position: { top: '50px' } };
-    let dlgRef = this.dialog.open(this.dialogRef, config);
-    
-    dlgRef.componentInstance.confirmMessage = "Are you sure you want to delete " + name + " ?"
-
-    dlgRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.fbDelete(id);
+  openDialog(ninjaName: string): void {
+    this.ninjaSelected = ninjaName;
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '250px',
+      data: {
+        title: 'Confirm Ninja Delete',
+        text: 'Are you sure you want to delete ninja ' + ninjaName + '?',
+        name: ninjaName
       }
-      this.dialogRef = null;
     });
-        
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed.Result=' + result);
+
+      if (result) {
+        this.fbDelete(result);
+      }
+    });
   }
 }

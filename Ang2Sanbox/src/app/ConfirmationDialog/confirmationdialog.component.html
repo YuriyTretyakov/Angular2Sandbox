@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<div mat-dialog-content>
+  <p>{{data.text}}</p>
+</div>
+<div mat-dialog-actions>
+  <div>
+    <button class="delete-ninja" (click)="onCancel()" mat-button>Cancel</button>
+  </div>
+  <div>
+    <button class="delete-ninja" (click)="onConfirm(data.name)" mat-raised-button  cdkFocusInitial>Confirm</button>
+  </div>
+</div>
