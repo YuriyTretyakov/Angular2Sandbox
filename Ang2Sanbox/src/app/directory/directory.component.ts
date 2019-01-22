@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { LoggingService } from '../logging.service';
 import { DataService } from '../data.service';
+import { ConfirmationDialog } from '../ConfirmationDialog/confirmationdialog';
+import { MatDialogRef,  MatDialog } from '@angular/material';
+
 declare var firebase: any;
 
 
@@ -13,13 +16,14 @@ declare var firebase: any;
 })
 export class DirectoryComponent implements OnInit {
 
+  dialogRef: MatDialogRef<ConfirmationDialog>;
   userenter: string;
   ninjas = [];
   name: string;
   belt: string;
 
   constructor(private logger: LoggingService,
-              private dataService: DataService) {
+    private dataService: DataService, private dialog: MatDialog) {
 
     
   }
@@ -57,13 +61,22 @@ export class DirectoryComponent implements OnInit {
     this.belt = "";
   }
 
-  fbDelete($event) {
-    var ninjaName = $event.target.getAttribute('data-name');
-    this.dataService.fetchData().subscribe(data => {
-    var key = Object.keys(data).find(key => data[key].name === ninjaName);
-    var item = firebase.database().ref('/').child(key).remove();
-    });
+  fbDelete(ninjaId:string) {
+    var item = firebase.database().ref('/').child(ninjaId).remove();
   }
-  
 
+  openConfirmationDialog(name: string, id: string) {
+    let config = { with: '650px', height: '400px', position: { top: '50px' } };
+    let dlgRef = this.dialog.open(this.dialogRef, config);
+    
+    dlgRef.componentInstance.confirmMessage = "Are you sure you want to delete " + name + " ?"
+
+    dlgRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.fbDelete(id);
+      }
+      this.dialogRef = null;
+    });
+        
+  }
 }
