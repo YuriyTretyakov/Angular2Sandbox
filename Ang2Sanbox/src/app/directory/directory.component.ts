@@ -30,7 +30,7 @@ export class DirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    firebase = {};
+    
     this.fbSubscribeChildRemoved();
     this.fbGetData();
   }
